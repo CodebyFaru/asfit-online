@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASFIT - Entrenamiento Funcional & Fit Meals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <style>
+        :root {
+            --primary: #E63946;
+            --primary-dark: #C1121F;
+            --light: #FFFFFF;
+            --dark: #1A1A1A;
+            --gray: #F5F5F5;
+            --transition: all 0.3s ease;
+            --premium-gradient: linear-gradient(135deg, #E63946 0%, #C1121F 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--premium-gradient);
+            color: var(--light);
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            text-align: center;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: var(--primary-dark);
+            transition: var(--transition);
+            z-index: -1;
+        }
+        
+        .btn:hover:before {
+            width: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(230, 57, 70, 0.4);
+        }
+        
+        .btn-meal {
+            background: var(--premium-gradient);
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.3);
+        }
+        
+        .btn-meal:before {
+            background: #C1121F;
+        }
+        
+        .btn i {
+            margin-right: 10px;
+        }
+        
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: var(--primary);
+            margin: 15px auto 0;
+        }
+        
+        .section-title span {
+            color: var(--primary);
+        }
+
+        /* Navigation Menu */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-dark);
+        }
+        
+        /* Header */
+        header {
+            position: relative;
+            height: 100vh;
+            color: var(--light);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            margin-top: 70px;
+            background: transparent;
+        }
+        
+        .hero-img-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .hero-img-container img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            margin: 20px 0 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--light);
+            font-weight: 600;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            padding: 0 20px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+        }
+        
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-weight: 500;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+        
+        /* Bienvenida */
+        #bienvenida {
+            background-color: var(--light);
+        }
+        
+        .welcome-container {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+        
+        .welcome-text {
+            flex: 1;
+            order: 2;
+        }
+        
+        .welcome-text h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+        
+        .welcome-text h2 span {
+            color: var(--primary-dark);
+        }
+        
+        .welcome-text p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        
+        .welcome-img-slider {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            position: relative;
+            border: 5px solid var(--light);
+            outline: 2px solid var(--primary);
+            order: 1;
+            margin-bottom: 30px;
+            height: auto;
+        }
+        
+        .welcome-slide {
+            width: 100%;
+            height: auto;
+            min-height: 300px;
+            position: relative;
+        }
+        
+        .welcome-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .slick-dots {
+            bottom: 20px;
+        }
+        
+        .slick-dots li button:before {
+            color: white;
+            opacity: 0.5;
+            font-size: 10px;
+        }
+        
+        .slick-dots li.slick-active button:before {
+            color: var(--primary);
+            opacity: 1;
+        }
+        
+        /* Beneficios */
+        #beneficios {
+            background-color: var(--light);
+            position: relative;
+        }
+        
+        #beneficios:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f8f9fa"/><path d="M0 50 Q 25 30, 50 50 T 100 50 L 100 100 L 0 100 Z" fill="%23e63946" opacity="0.05"/></svg>');
+            background-size: cover;
+            z-index: 0;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .benefit-card {
+            background-color: var(--light);
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .benefit-card i {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            transition: transform 0.5s ease;
+        }
+        
+        .benefit-card:hover i {
+            transform: scale(1.2);
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .benefit-card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            flex: 1;
+        }
+        
+        .cta-container {
+            text-align: center;
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Método ASFIT */
+        #metodo {
+            background-color: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #metodo:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23ffffff"/><path d="M0 0 Q 50 30, 100 0 L 100 100 L 0 100 Z" fill="%23e63946" opacity="0.05"/></svg>');
+            background-size: cover;
+            z-index: 0;
+        }
+        
+        .method-container {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .method-text {
+            flex: 1;
+        }
+        
+        .method-steps {
+            flex: 1;
+        }
+        
+        .step {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            align-items: flex-start;
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 3px solid var(--primary);
+            transition: var(--transition);
+        }
+        
+        .step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: var(--light);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            transition: transform 0.5s ease;
+        }
+        
+        .step:hover .step-number {
+            transform: rotate(15deg) scale(1.1);
+        }
+        
+        .step-content h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        /* Functional Training Section */
+        #entrenamientos {
+            background-color: var(--light);
+            position: relative;
+        }
+        
+        #entrenamientos:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f8f9fa"/><path d="M0 0 Q 50 30, 100 0 L 100 100 L 0 100 Z" fill="%23e63946" opacity="0.05"/></svg>');
+            background-size: cover;
+            z-index: 0;
+        }
+        
+        .training-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .training-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            position: relative;
+            text-align: center;
+            border-top: 4px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .training-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(230, 57, 70, 0.15);
+        }
+        
+        .training-header {
+            background: var(--premium-gradient);
+            padding: 30px 20px;
+            color: white;
+        }
+        
+        .training-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .training-price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            font-family: 'Oswald', sans-serif;
+        }
+        
+        .training-content {
+            padding: 30px 20px;
+            flex: 1;
+        }
+        
+        .training-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .training-footer {
+            padding: 0 20px 30px;
+        }
+        
+        /* Fit Meals Section */
+        #fitmeals {
+            background-color: var(--light);
+            position: relative;
+        }
+        
+        #fitmeals:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23ffffff"/><path d="M0 100 Q 25 80, 50 100 T 100 100 L 100 0 L 0 0 Z" fill="%23e63946" opacity="0.05"/></svg>');
+            background-size: cover;
+            z-index: 0;
+        }
+        
+        .meals-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .meal-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            position: relative;
+            border-top: 4px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .meal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(230, 57, 70, 0.15);
+        }
+        
+        .meal-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .meal-img img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+        
+        .meal-card:hover .meal-img img {
+            transform: scale(1.1);
+        }
+        
+        .meal-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .meal-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        
+        .meal-description {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            line-height: 1.6;
+            flex: 1;
+        }
+        
+        .meal-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Oswald', sans-serif;
+            margin-bottom: 20px;
+        }
+        
+        .meal-footer {
+            padding: 0 25px 25px;
+        }
+        
+        /* WhatsApp Flotante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            text-decoration: none;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--light);
+            padding: 80px 0 40px;
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--light);
+            margin-bottom: 20px;
+            font-family: 'Oswald', sans-serif;
+        }
+        
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-contact i {
+            color: var(--light);
+            margin-right: 10px;
+            font-size: 1.2rem;
+            width: 25px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: var(--light);
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Responsive */
+        @media (min-width: 992px) {
+            .welcome-container {
+                flex-direction: row;
+            }
+            
+            .welcome-text {
+                order: 1;
+            }
+            
+            .welcome-img-slider {
+                order: 2;
+                margin-bottom: 0;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .method-container {
+                flex-direction: column;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.3rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 14px 30px;
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo">ASFIT</a>
+            <ul class="nav-links">
+                <li><a href="#bienvenida">Sobre Mí</a></li>
+                <li><a href="#beneficios">Beneficios</a></li>
+                <li><a href="#metodo">Método</a></li>
+                <li><a href="#entrenamientos">Entrenamientos</a></li>
+                <li><a href="#fitmeals">Fit Meals</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- WhatsApp flotante -->
+    <a href="https://wa.me/18495038954" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header -->
+    <header>
+        <div class="hero-img-container">
+            <img src="herohero.JPG" alt="Entrenamiento personal ASFIT">
+        </div>
+        
+        <div class="container hero-content">
+            <p class="tagline">Entrenamiento personal premium</p>
+            <h1>TRANSFORMACIÓN <span>FÍSICA</span> CON ENTRENAMIENTO <span>PREMIUM</span></h1>
+            <p>Con Axel Alejandro, entrenador personal certificado en California</p>
+            <a href="https://wa.me/18495038954" class="btn">
+                <i class="fab fa-whatsapp"></i> RESERVA TU CLASE
+            </a>
+        </div>
+    </header>
+
+    <!-- Bienvenida -->
+    <section id="bienvenida">
+        <div class="container">
+            <h2 class="section-title">Hola, soy <span>Axel Alejandro</span></h2>
+            <div class="welcome-container">
+                <div class="welcome-text">
+                    <p>Entrenador personal certificado en California y fundador de ASFIT. Estoy en Santo Domingo y me dedico a ayudarte a transformar tu cuerpo con entrenamientos personalizados y seguimiento real.</p>
+                    <p>Mi formación en Estados Unidos me ha permitido desarrollar metodologías de entrenamiento efectivas y seguras, adaptadas a tus objetivos específicos. Ya sea que busques perder peso, ganar masa muscular o mejorar tu rendimiento deportivo, juntos lograremos resultados extraordinarios.</p>
+                    <p>En ASFIT, creemos que cada cuerpo es único y requiere un enfoque personalizado. No encontrarás rutinas genéricas aquí, solo programas diseñados específicamente para ti y tus metas.</p>
+                    <a href="#entrenamientos" class="btn">
+                        <i class="fas fa-dumbbell"></i> VER ENTRENAMIENTOS
+                    </a>
+                </div>
+                <div class="welcome-img-slider">
+                    <div class="welcome-slide">
+                        <img src="axel1.jpg" alt="Axel Alejandro entrenador personal">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="axel2.jpg" alt="Axel Alejandro entrenando">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="axel3.jpg" alt="Axel Alejandro demostrando ejercicio">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="axel4.jpg" alt="Axel Alejandro en competencia">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="axel5.jpg" alt="Axel Alejandro fitness">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section id="beneficios">
+        <div class="container">
+            <h2 class="section-title">Beneficios <span>Exclusivos</span></h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-user-cog"></i>
+                    <h3>Planes Personalizados</h3>
+                    <p>Programas diseñados específicamente para tus objetivos, nivel y disponibilidad. Cada rutina se adapta a tus necesidades para maximizar resultados.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Resultados Garantizados</h3>
+                    <p>Seguimiento constante de tu progreso con mediciones periódicas para asegurar que alcances tus metas en el tiempo establecido.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>Asesoría Directa</h3>
+                    <p>Soporte constante para resolver dudas, ajustar rutinas y planificar nutrición a través de comunicación directa por WhatsApp.</p>
+                </div>
+            </div>
+            
+            <div class="cta-container">
+                <a href="https://wa.me/18495038954" class="btn">
+                    <i class="fab fa-whatsapp"></i> RESERVA TU CLASE
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Método ASFIT -->
+    <section id="metodo">
+        <div class="container">
+            <h2 class="section-title">Método <span>ASFIT</span></h2>
+            
+            <div class="method-container">
+                <div class="method-text">
+                    <p>Mi enfoque de entrenamiento se basa en tres pilares fundamentales que garantizan resultados efectivos y sostenibles en el tiempo.</p>
+                    <p>Cada cliente recibe una evaluación inicial completa donde analizamos tu condición física actual, tus objetivos y tus limitaciones. Con esta información, diseñamos un programa de entrenamiento adaptado exclusivamente a ti.</p>
+                    <p>El seguimiento constante es clave para el éxito. Realizamos evaluaciones periódicas para medir tu progreso y ajustar el programa según tus avances.</p>
+                    <a href="#entrenamientos" class="btn">
+                        <i class="fas fa-dumbbell"></i> VER ENTRENAMIENTOS
+                    </a>
+                </div>
+                
+                <div class="method-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Evaluación Inicial</h3>
+                            <p>Análisis completo de tu condición física, objetivos y necesidades específicas.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Plan Personalizado</h3>
+                            <p>Diseño de un programa de entrenamiento adaptado exclusivamente a ti.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Seguimiento Constante</h3>
+                            <p>Evaluaciones periódicas y ajustes del programa según tu progreso.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Functional Training Plans -->
+    <section id="entrenamientos">
+        <div class="container">
+            <h2 class="section-title">Entrenamientos <span>Funcionales</span></h2>
+            <p class="text-center" style="max-width: 700px; margin: 0 auto 50px; font-size: 1.2rem;">
+                Sesiones express diseñadas para maximizar resultados en poco tiempo. Perfectas para personas con agendas ocupadas.
+            </p>
+            
+            <div class="training-grid">
+                <div class="training-card">
+                    <div class="training-header">
+                        <h3>BOXEO FUNCIONAL</h3>
+                        <div class="training-price">20 USD</div>
+                    </div>
+                    <div class="training-content">
+                        <p>Entrenamiento cardiovascular que combina movimientos de boxeo con ejercicios funcionales para quemar grasa y tonificar.</p>
+                    </div>
+                    <div class="training-footer">
+                        <a href="https://wa.me/18495038954?text=Estoy%20interesado%20en%20BOXEO%20FUNCIONAL" class="btn">RESERVAR AHORA</a>
+                    </div>
+                </div>
+                
+                <div class="training-card">
+                    <div class="training-header">
+                        <h3>FULL BODY EXPRESS</h3>
+                        <div class="training-price">20 USD</div>
+                    </div>
+                    <div class="training-content">
+                        <p>Sesión intensa de 45 minutos que trabaja todos los grupos musculares para un desarrollo integral.</p>
+                    </div>
+                    <div class="training-footer">
+                        <a href="https://wa.me/18495038954?text=Estoy%20interesado%20en%20FULL%20BODY%20EXPRESS" class="btn">RESERVAR AHORA</a>
+                    </div>
+                </div>
+                
+                <div class="training-card">
+                    <div class="training-header">
+                        <h3>ENTRENAMIENTO EN PAREJA</h3>
+                        <div class="training-price">30 USD</div>
+                    </div>
+                    <div class="training-content">
+                        <p>Sesión diseñada para dos personas que quieren entrenar juntas. Perfecto para parejas o amigos.</p>
+                    </div>
+                    <div class="training-footer">
+                        <a href="https://wa.me/18495038954?text=Estoy%20interesado%20en%20ENTRENAMIENTO%20EN%20PAREJA" class="btn">RESERVAR AHORA</a>
+                    </div>
+                </div>
+                
+                <div class="training-card">
+                    <div class="training-header">
+                        <h3>PACK SEMANAL</h3>
+                        <div class="training-price">50 USD</div>
+                    </div>
+                    <div class="training-content">
+                        <p>3 clases de entrenamiento funcional a la semana. Ideal para quienes buscan resultados rápidos.</p>
+                    </div>
+                    <div class="training-footer">
+                        <a href="https://wa.me/18495038954?text=Estoy%20interesado%20en%20PACK%20SEMANAL" class="btn">RESERVAR AHORA</a>
+                    </div>
+                </div>
+                
+                <div class="training-card">
+                    <div class="training-header">
+                        <h3>PACK MENSUAL</h3>
+                        <div class="training-price">120 USD</div>
+                    </div>
+                    <div class="training-content">
+                        <p>8 clases de entrenamiento funcional al mes. La opción más económica para entrenar regularmente.</p>
+                    </div>
+                    <div class="training-footer">
+                        <a href="https://wa.me/18495038954?text=Estoy%20interesado%20en%20PACK%20MENSUAL" class="btn">RESERVAR AHORA</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 40px;">
+                <h3>Horarios Disponibles</h3>
+                <p style="font-size: 1.4rem; margin-top: 20px;">
+                    <strong>Lunes a Sábado:</strong> 7:00 AM - 8:00 PM<br>
+                    <strong>Domingos:</strong> 9:00 AM - 1:00 PM
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fit Meals -->
+    <section id="fitmeals">
+        <div class="container">
+            <h2 class="section-title">ASFIT <span>Fit Meals</span></h2>
+            <p class="text-center" style="max-width: 700px; margin: 0 auto 50px; font-size: 1.2rem;">
+                Comidas saludables y deliciosas diseñadas para complementar tu entrenamiento y acelerar tus resultados.
+            </p>
+            
+            <div class="meals-container">
+                <div class="meal-card">
+                    <div class="meal-img">
+                        <img src="polloalgrill.png" alt="Pollo Grillado con Quinoa">
+                    </div>
+                    <div class="meal-content">
+                        <h3 class="meal-title">POLLO GRILLADO CON QUINOA</h3>
+                        <p class="meal-description">Proteína magra + fibra + ensalada fresca</p>
+                        <div class="meal-price">10 USD</div>
+                    </div>
+                    <div class="meal-footer">
+                        <a href="https://wa.me/18495038954?text=Quiero%20pedir%20POLLO%20GRILLADO%20CON%20QUINOA" class="btn btn-meal">
+                            <i class="fab fa-whatsapp"></i> PEDIR AHORA
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="meal-card">
+                    <div class="meal-img">
+                        <img src="wrapdeatun.png" alt="Wrap Integral de Atún">
+                    </div>
+                    <div class="meal-content">
+                        <h3 class="meal-title">WRAP INTEGRAL DE ATÚN</h3>
+                        <p class="meal-description">Ligero, con aguacate y aceite de oliva</p>
+                        <div class="meal-price">9 USD</div>
+                    </div>
+                    <div class="meal-footer">
+                        <a href="https://wa.me/18495038954?text=Quiero%20pedir%20WRAP%20INTEGRAL%20DE%20ATÚN" class="btn btn-meal">
+                            <i class="fab fa-whatsapp"></i> PEDIR AHORA
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="meal-card">
+                    <div class="meal-img">
+                        <img src="salmonarrozquinoa.png" alt="Bowl de Salmón">
+                    </div>
+                    <div class="meal-content">
+                        <h3 class="meal-title">BOWL DE SALMÓN Y ARROZ INTEGRAL</h3>
+                        <p class="meal-description">Omega-3 + carbohidrato limpio + vegetales</p>
+                        <div class="meal-price">12 USD</div>
+                    </div>
+                    <div class="meal-footer">
+                        <a href="https://wa.me/18495038954?text=Quiero%20pedir%20BOWL%20DE%20SALMÓN" class="btn btn-meal">
+                            <i class="fab fa-whatsapp"></i> PEDIR AHORA
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="meal-card">
+                    <div class="meal-img">
+                        <img src="clara.png" alt="Omelette de Claras">
+                    </div>
+                    <div class="meal-content">
+                        <h3 class="meal-title">OMELETTE DE CLARAS Y AVENA</h3>
+                        <p class="meal-description">Ideal para desayuno post-entreno</p>
+                        <div class="meal-price">8 USD</div>
+                    </div>
+                    <div class="meal-footer">
+                        <a href="https://wa.me/18495038954?text=Quiero%20pedir%20OMELETTE%20DE%20CLARAS" class="btn btn-meal">
+                            <i class="fab fa-whatsapp"></i> PEDIR AHORA
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="meal-card">
+                    <div class="meal-img">
+                        <img src="tacos.png" alt="Tacos de Pollo">
+                    </div>
+                    <div class="meal-content">
+                        <h3 class="meal-title">TACOS DE POLLO EN TORTILLA INTEGRAL</h3>
+                        <p class="meal-description">Opción saludable con pico de gallo</p>
+                        <div class="meal-price">9 USD</div>
+                    </div>
+                    <div class="meal-footer">
+                        <a href="https://wa.me/18495038954?text=Quiero%20pedir%20TACOS%20DE%20POLLO" class="btn btn-meal">
+                            <i class="fab fa-whatsapp"></i> PEDIR AHORA
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="meal-card">
+                    <div class="meal-img">
+                        <img src="ensaladagreen.png" alt="Ensalada Power Green">
+                    </div>
+                    <div class="meal-content">
+                        <h3 class="meal-title">ENSALADA "POWER GREEN"</h3>
+                        <p class="meal-description">Espinaca, pollo, aguacate, semillas</p>
+                        <div class="meal-price">8 USD</div>
+                    </div>
+                    <div class="meal-footer">
+                        <a href="https://wa.me/18495038954?text=Quiero%20pedir%20ENSALADA%20POWER%20GREEN" class="btn btn-meal">
+                            <i class="fab fa-whatsapp"></i> PEDIR AHORA
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="meal-card">
+                    <div class="meal-img">
+                        <img src="smoothiee.png" alt="Smoothie ASFIT">
+                    </div>
+                    <div class="meal-content">
+                        <h3 class="meal-title">SMOOTHIE ASFIT</h3>
+                        <p class="meal-description">Proteína + frutas - Post-entreno, batido listo</p>
+                        <div class="meal-price">5 USD</div>
+                    </div>
+                    <div class="meal-footer">
+                        <a href="https://wa.me/18495038954?text=Quiero%20pedir%20SMOOTHIE%20ASFIT" class="btn btn-meal">
+                            <i class="fab fa-whatsapp"></i> PEDIR AHORA
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">ASFIT</div>
+                    <p>Entrenamiento personal premium en Santo Domingo. Transformamos cuerpos y vidas con metodologías probadas y planes 100% personalizados.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/18495038954"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Santo Domingo, República Dominicana</p>
+                    <p><i class="fas fa-phone"></i> +1 (849) 503-8954</p>
+                    <p><i class="fas fa-envelope"></i> axel.sl@hotmail.com</p>
+                    <p><i class="fas fa-clock"></i> Lunes a Viernes: 6:00 AM - 9:00 PM</p>
+                    <p><i class="fas fa-clock"></i> Sábados: 7:00 AM - 2:00 PM</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 ASFIT by Axel Alejandro. Todos los derechos reservados. By Codebyfaru</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        // Initialize image slider
+        $(document).ready(function(){
+            $('.welcome-img-slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                fade: false,
+                cssEase: 'linear',
+                autoplay: true,
+                autoplaySpeed: 3000,
+                arrows: true,
+                adaptiveHeight: true
+            });
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Sticky navigation background
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                document.querySelector('nav').style.background = 'rgba(255, 255, 255, 0.98)';
+                document.querySelector('nav').style.padding = '10px 0';
+                document.querySelector('nav').style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                document.querySelector('nav').style.background = 'rgba(255, 255, 255, 0.95)';
+                document.querySelector('nav').style.padding = '15px 0';
+                document.querySelector('nav').style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
