@@ -199,7 +199,7 @@
             color: var(--primary-dark);
         }
         
-        /* Header */
+        /* Header - UPDATED FOR BETTER LOGO VISIBILITY */
         header {
             position: relative;
             height: 100vh;
@@ -226,6 +226,8 @@
             width: 100%;
             height: auto;
             object-fit: contain;
+            /* Better positioning for logo visibility */
+            object-position: center top;
         }
         
         .tagline {
@@ -242,6 +244,8 @@
             position: relative;
             z-index: 5;
             padding: 0 20px;
+            /* Shift content upward for better logo visibility */
+            margin-top: -10vh;
         }
         
         .hero-content h1 {
@@ -815,6 +819,11 @@
             
             .section-title {
                 font-size: 2.2rem;
+            }
+            
+            /* Adjust hero content position on mobile */
+            .hero-content {
+                margin-top: -5vh;
             }
         }
         
