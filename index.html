@@ -197,14 +197,14 @@
             color: var(--primary-dark);
         }
         
-        /* Header - UPDATED FOR BETTER LOGO VISIBILITY */
+        /* Header - UPDATED HERO SECTION */
         header {
             position: relative;
             height: 100vh;
             color: var(--light);
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             text-align: center;
             overflow: hidden;
             margin-top: 70px;
@@ -222,10 +222,9 @@
         
         .hero-img-container img {
             width: 100%;
-            height: auto;
-            object-fit: contain;
-            /* Better positioning for logo visibility */
-            object-position: center top;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
         
         .tagline {
@@ -242,8 +241,10 @@
             position: relative;
             z-index: 5;
             padding: 0 20px;
-            /* Shift content upward for better logo visibility */
-            margin-top: -10vh;
+            margin-top: 20vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         .hero-content h1 {
@@ -263,6 +264,14 @@
             margin: 0 auto 40px;
             font-weight: 500;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+        
+        .hero-bottom {
+            width: 100%;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10vh;
         }
         
         /* Bienvenida */
@@ -801,7 +810,11 @@
             
             /* Adjust hero content position on mobile */
             .hero-content {
-                margin-top: -5vh;
+                margin-top: 15vh;
+            }
+            
+            .hero-bottom {
+                margin-bottom: 5vh;
             }
         }
         
@@ -825,6 +838,10 @@
             
             .nav-links {
                 display: none;
+            }
+            
+            .hero-content {
+                margin-top: 10vh;
             }
         }
         
@@ -863,6 +880,9 @@
             <p class="tagline">Entrenamiento personal premium</p>
             <h1>TRANSFORMACIÓN <span>FÍSICA</span> CON ENTRENAMIENTO <span>PREMIUM</span></h1>
             <p>Con Axel Alejandro, entrenador personal certificado en California</p>
+        </div>
+        
+        <div class="hero-bottom">
             <a href="https://wa.me/18495038954" class="btn">
                 <i class="fab fa-whatsapp"></i> RESERVA TU CLASE
             </a>
