@@ -7,8 +7,6 @@
     <link rel="icon" type="image/png" href="favicon-32x32.png" />
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
     <style>
         :root {
             --primary: #E63946;
@@ -299,7 +297,8 @@
             line-height: 1.8;
         }
         
-        .welcome-img-slider {
+        /* CHANGED: Removed slider styles and added static image styles */
+        .welcome-img-static {
             flex: 1;
             border-radius: 10px;
             overflow: hidden;
@@ -312,35 +311,14 @@
             height: auto;
         }
         
-        .welcome-slide {
+        .welcome-img-static img {
             width: 100%;
             height: auto;
-            min-height: 300px;
-            position: relative;
-        }
-        
-        .welcome-slide img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
             display: block;
             transition: transform 0.5s ease;
         }
         
-        .slick-dots {
-            bottom: 20px;
-        }
-        
-        .slick-dots li button:before {
-            color: white;
-            opacity: 0.5;
-            font-size: 10px;
-        }
-        
-        .slick-dots li.slick-active button:before {
-            color: var(--primary);
-            opacity: 1;
-        }
+        /* Removed all slick-related styles */
         
         /* Beneficios */
         #beneficios {
@@ -776,7 +754,7 @@
                 order: 1;
             }
             
-            .welcome-img-slider {
+            .welcome-img-static {
                 order: 2;
                 margin-bottom: 0;
             }
@@ -904,22 +882,9 @@
                         <i class="fas fa-dumbbell"></i> VER ENTRENAMIENTOS
                     </a>
                 </div>
-                <div class="welcome-img-slider">
-                    <div class="welcome-slide">
-                        <img src="axel1.jpg" alt="Axel Alejandro entrenador personal">
-                    </div>
-                    <div class="welcome-slide">
-                        <img src="axel2.jpg" alt="Axel Alejandro entrenando">
-                    </div>
-                    <div class="welcome-slide">
-                        <img src="axel3.jpg" alt="Axel Alejandro demostrando ejercicio">
-                    </div>
-                    <div class="welcome-slide">
-                        <img src="axel4.jpg" alt="Axel Alejandro en competencia">
-                    </div>
-                    <div class="welcome-slide">
-                        <img src="axel5.jpg" alt="Axel Alejandro fitness">
-                    </div>
+                <!-- CHANGED: Replaced slider with static image -->
+                <div class="welcome-img-static">
+                    <img src="axel1.jpg" alt="Axel Alejandro entrenador personal">
                 </div>
             </div>
         </div>
@@ -1243,45 +1208,31 @@
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script>
-        // Initialize image slider
-        $(document).ready(function(){
-            $('.welcome-img-slider').slick({
-                dots: true,
-                infinite: true,
-                speed: 500,
-                fade: false,
-                cssEase: 'linear',
-                autoplay: true,
-                autoplaySpeed: 3000,
-                arrows: true,
-                adaptiveHeight: true
-            });
-        });
-
         // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        $(document).ready(function(){
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 });
             });
-        });
-        
-        // Sticky navigation background
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                document.querySelector('nav').style.background = 'rgba(255, 255, 255, 0.98)';
-                document.querySelector('nav').style.padding = '10px 0';
-                document.querySelector('nav').style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                document.querySelector('nav').style.background = 'rgba(255, 255, 255, 0.95)';
-                document.querySelector('nav').style.padding = '15px 0';
-                document.querySelector('nav').style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-            }
+            
+            // Sticky navigation background
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    document.querySelector('nav').style.background = 'rgba(255, 255, 255, 0.98)';
+                    document.querySelector('nav').style.padding = '10px 0';
+                    document.querySelector('nav').style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    document.querySelector('nav').style.background = 'rgba(255, 255, 255, 0.95)';
+                    document.querySelector('nav').style.padding = '15px 0';
+                    document.querySelector('nav').style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                }
+            });
         });
     </script>
 </body>
